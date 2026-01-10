@@ -69,17 +69,69 @@ void NoticeManager::stopPolling()
     }
 }
 
-void NoticeManager::fetchNotices()
+void NoticeManager::fetchNotices(bool useMock = true) // 新增useMock参数，默认启用模拟数据
 {
+    if (useMock) {
+        // 启用本地模拟数据
+        MockServer mockServer;
+        QByteArray mockData = mockServer.getMockNotices();
+        // 直接调用解析逻辑
+        QJsonParseError error;
+        QJsonDocument doc = QJsonDocument::fromJson(mockData, &error);
+        if (error.error == QJsonParseError::NoError && doc.isArray()) {
+            QJsonArray noticesArray = doc.array();
+            QList<Notice> notices;
+            // 解析逻辑与onNetworkReplyFinished一致，复制过来即可
+            for (const auto &item : noticesArray) {
+                if (!item.isObject()) continue;
+                QJsonObject obj = item.toObject();
+                Notice notice;
+                notice.id = obj.value("id").toInt();
+                notice.title = obj.value("title").toString();
+                notice.content = obj.value("content").toString();
+                notice.category = obj.value("category").toString();
+                QString timeStr = obj.value("publish_time").toString();
+                notice.publishTime = timeStr.isEmpty() ? QDateTime::currentDateTime() : QDateTime::fromString(timeStr, Qt::ISODate);
+                notice.isRead = obj.value("is_read").toBool(false);
+                notices.append(notice);
+            }
+            // 后续逻辑（对比新通知、保存数据库、发送信号）与onNetworkReplyFinished一致
+            QSet<int> currentIds;
+            {
+                QMutexLocker locker(&mutex);
+                QSqlQuery query(database);
+                query.prepare("SELECT id FROM notices");
+                if (query.exec()) {
+                    while (query.next()) currentIds.insert(query.value(0).toInt());
+                }
+            }
+            QList<Notice> newNotices;
+            for (const Notice &notice : notices) {
+                if (!currentIds.contains(notice.id)) newNotices.append(notice);
+            }
+            saveNoticesToDatabase(notices);
+            if (!newNotices.isEmpty()) {
+                qCInfo(noticeManager) << "Found" << newNotices.size() << "new mock notices";
+                emit newNoticesReceived(newNotices);
+            }
+            emit networkStatusChanged(QString("已加载本地模拟通知（%1条）").arg(notices.size()));
+            LogManager::writeLog("INFO", "使用本地模拟数据，加载3条通知");
+            return;
+        } else {
+            emit networkStatusChanged("模拟数据解析失败");
+            LogManager::writeLog("ERROR", "模拟数据解析失败：" + error.errorString());
+            return;
+        }
+    }
+
+    // 原有真实网络请求逻辑（不变）
     qCInfo(noticeManager) << "Fetching notices from server:" << serverUrl;
     emit networkStatusChanged("Fetching notices...");
-
     QNetworkRequest request;
     request.setUrl(QUrl(serverUrl));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-
+    request.setTransferTimeout(10000); // Qt 17超时设置
     QNetworkReply *reply = networkManager->get(request);
-    // 这里不需要显式delete reply，因为onNetworkReplyFinished会处理
 }
 
 void NoticeManager::markAsRead(int id)

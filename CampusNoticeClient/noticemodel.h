@@ -8,6 +8,8 @@
 #include <QSqlRecord>
 #include <QSqlQuery>
 #include <QSqlField>
+#include "logmanager.h"
+#include "mockserver.h"
 
 // 通知数据结构
 struct Notice {

@@ -185,12 +185,11 @@ void MainWindow::loadNotices()
 void MainWindow::onRefreshClicked()
 {
     if (offlineModeCheckBox->isChecked()) {
-        // 离线模式下只加载本地数据
         sourceModel->loadData();
-        onCacheCountChanged(sourceModel->rowCount()); // 更新缓存计数
+        onCacheCountChanged(sourceModel->rowCount());
         onNetworkStatusChanged("离线模式 - 已刷新本地数据");
     } else {
-        noticeManager->fetchNotices();
+        noticeManager->fetchNotices(true); // 传入true启用模拟数据
     }
 }
 

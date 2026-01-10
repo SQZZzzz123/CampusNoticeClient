@@ -1,36 +1,46 @@
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+QT += core gui widgets network sql uitools concurrent charts
 CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+TARGET = CampusNoticeClient
+TEMPLATE = app
 
-SOURCES += \
-    MainWindow.cpp \
-    NoticeManager.cpp \
-    chartmanager.cpp \
-    logmanager.cpp \
-    main.cpp \
-    mockserver.cpp \
-    noticemodel.cpp \
-    traymanager.cpp
-
+# 头文件列表（确保所有.h文件都在）
 HEADERS += \
     MainWindow.h \
     NoticeManager.h \
-    chartmanager.h \
-    logmanager.h \
-    mockserver.h \
-    noticemodel.h \
-    traymanager.h
+    NoticeModel.h \
+    ChartManager.h \
+    TrayManager.h \
+    LogManager.h \
+    MockServer.h
 
-FORMS += \
-    MainWindow.ui
+# 源文件列表（确保所有.cpp文件都在）
+SOURCES += \
+    main.cpp \
+    MainWindow.cpp \
+    NoticeManager.cpp \
+    NoticeModel.cpp \
+    ChartManager.cpp \
+    TrayManager.cpp \
+    LogManager.cpp \
+    MockServer.cpp
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+# 禁用UI文件（纯代码UI，避免冲突）
+# FORMS += MainWindow.ui
+
+# 部署配置（Release模式输出）
+CONFIG(release, debug|release): {
+    DESTDIR = ./release
+    OBJECTS_DIR = ./release/.obj
+    MOC_DIR = ./release/.moc
+    RCC_DIR = ./release/.rcc
+} else {
+    DESTDIR = ./debug
+    OBJECTS_DIR = ./debug/.obj
+    MOC_DIR = ./debug/.moc
+    RCC_DIR = ./debug/.rcc
+}
+
+# Windows平台依赖（确保网络、数据库正常）
+win32: LIBS += -lws2_32
