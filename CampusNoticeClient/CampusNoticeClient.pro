@@ -10,10 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     MainWindow.cpp \
-    main.cpp
+    NoticeManager.cpp \
+    main.cpp \
+    noticemodel.cpp
 
 HEADERS += \
-    MainWindow.h
+    MainWindow.h \
+    NoticeManager.h \
+    noticemodel.h
 
 FORMS += \
     MainWindow.ui
