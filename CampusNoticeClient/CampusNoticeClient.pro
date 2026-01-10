@@ -14,6 +14,7 @@ SOURCES += \
     chartmanager.cpp \
     logmanager.cpp \
     main.cpp \
+    mockserver.cpp \
     noticemodel.cpp \
     traymanager.cpp
 
@@ -22,6 +23,7 @@ HEADERS += \
     NoticeManager.h \
     chartmanager.h \
     logmanager.h \
+    mockserver.h \
     noticemodel.h \
     traymanager.h
 
