@@ -12,6 +12,7 @@ SOURCES += \
     MainWindow.cpp \
     NoticeManager.cpp \
     chartmanager.cpp \
+    logmanager.cpp \
     main.cpp \
     noticemodel.cpp \
     traymanager.cpp
@@ -20,6 +21,7 @@ HEADERS += \
     MainWindow.h \
     NoticeManager.h \
     chartmanager.h \
+    logmanager.h \
     noticemodel.h \
     traymanager.h
 
