@@ -13,13 +13,15 @@ SOURCES += \
     NoticeManager.cpp \
     chartmanager.cpp \
     main.cpp \
-    noticemodel.cpp
+    noticemodel.cpp \
+    traymanager.cpp
 
 HEADERS += \
     MainWindow.h \
     NoticeManager.h \
     chartmanager.h \
-    noticemodel.h
+    noticemodel.h \
+    traymanager.h
 
 FORMS += \
     MainWindow.ui
