@@ -11,12 +11,14 @@ CONFIG += c++17
 SOURCES += \
     MainWindow.cpp \
     NoticeManager.cpp \
+    chartmanager.cpp \
     main.cpp \
     noticemodel.cpp
 
 HEADERS += \
     MainWindow.h \
     NoticeManager.h \
+    chartmanager.h \
     noticemodel.h
 
 FORMS += \
