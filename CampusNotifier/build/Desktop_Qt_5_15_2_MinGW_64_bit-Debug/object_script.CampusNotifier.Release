@@ -1,0 +1,10 @@
+release/databasehelper.o
+release/main.o
+release/mainwindow.o
+release/networkmanager.o
+release/notificationdetaildialog.o
+release/notificationeditdialog.o
+release/moc_mainwindow.o
+release/moc_networkmanager.o
+release/moc_notificationdetaildialog.o
+release/moc_notificationeditdialog.o
