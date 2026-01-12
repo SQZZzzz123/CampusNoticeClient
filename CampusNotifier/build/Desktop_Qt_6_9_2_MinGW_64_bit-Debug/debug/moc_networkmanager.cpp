@@ -45,6 +45,7 @@ template <> constexpr inline auto NetworkManager::qt_create_metaobjectdata<qt_me
         "",
         "QList<Notification>",
         "data",
+        "fetchNotifications",
         "onFinished",
         "QNetworkReply*",
         "reply"
@@ -55,9 +56,11 @@ template <> constexpr inline auto NetworkManager::qt_create_metaobjectdata<qt_me
         QtMocHelpers::SignalData<void(QVector<Notification>)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
+        // Slot 'fetchNotifications'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onFinished'
-        QtMocHelpers::SlotData<void(QNetworkReply *)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 },
+        QtMocHelpers::SlotData<void(QNetworkReply *)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 7, 8 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -83,14 +86,15 @@ void NetworkManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->dataReady((*reinterpret_cast< std::add_pointer_t<QList<Notification>>>(_a[1]))); break;
-        case 1: _t->onFinished((*reinterpret_cast< std::add_pointer_t<QNetworkReply*>>(_a[1]))); break;
+        case 1: _t->fetchNotifications(); break;
+        case 2: _t->onFinished((*reinterpret_cast< std::add_pointer_t<QNetworkReply*>>(_a[1]))); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 1:
+        case 2:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -124,14 +128,14 @@ int NetworkManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

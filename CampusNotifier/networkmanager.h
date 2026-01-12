@@ -10,10 +10,12 @@ class NetworkManager : public QObject {
     Q_OBJECT
 public:
     explicit NetworkManager(QObject *parent = nullptr);
-    void fetchNotifications(); // 模拟抓取
 
 signals:
     void dataReady(QVector<Notification> data);
+
+public slots:
+    void fetchNotifications(); // 模拟抓取
 
 private slots:
     void onFinished(QNetworkReply* reply);
