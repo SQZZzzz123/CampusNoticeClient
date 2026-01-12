@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->refreshBtn, &QPushButton::clicked, this, &MainWindow::onRefreshClicked);
     connect(netManager, &NetworkManager::dataReady, this, &MainWindow::updateUI);
     connect(ui->categoryCombo, &QComboBox::currentTextChanged, this, &MainWindow::filterByCategory);
-    connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::onNotificationItemClicked);
+    connect(ui->listWidget, &QListWidget::itemDoubleClicked, this, &MainWindow::onNotificationItemClicked);
     // 增加、修改、删除按钮信号槽
     connect(ui->addBtn, &QPushButton::clicked, this, &MainWindow::onAddBtnClicked);
     connect(ui->editBtn, &QPushButton::clicked, this, &MainWindow::onEditBtnClicked);
