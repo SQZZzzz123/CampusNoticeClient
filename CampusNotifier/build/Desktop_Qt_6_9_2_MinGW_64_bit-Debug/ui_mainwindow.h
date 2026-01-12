@@ -66,6 +66,8 @@ public:
         categoryCombo->addItem(QString());
         categoryCombo->addItem(QString());
         categoryCombo->addItem(QString());
+        categoryCombo->addItem(QString());
+        categoryCombo->addItem(QString());
         categoryCombo->setObjectName("categoryCombo");
         categoryCombo->setMinimumSize(QSize(120, 0));
 
@@ -145,6 +147,8 @@ public:
         categoryCombo->setItemText(1, QCoreApplication::translate("MainWindow", "\350\241\214\346\224\277", nullptr));
         categoryCombo->setItemText(2, QCoreApplication::translate("MainWindow", "\345\255\246\346\234\257", nullptr));
         categoryCombo->setItemText(3, QCoreApplication::translate("MainWindow", "\347\224\237\346\264\273", nullptr));
+        categoryCombo->setItemText(4, QCoreApplication::translate("MainWindow", "\350\211\272\346\234\257", nullptr));
+        categoryCombo->setItemText(5, QCoreApplication::translate("MainWindow", "\344\275\223\350\202\262", nullptr));
 
         refreshBtn->setText(QCoreApplication::translate("MainWindow", "\345\220\214\346\255\245\346\234\200\346\226\260\351\200\232\347\237\245", nullptr));
         addBtn->setText(QCoreApplication::translate("MainWindow", "\345\242\236\345\212\240\351\200\232\347\237\245", nullptr));

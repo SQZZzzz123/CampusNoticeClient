@@ -84,6 +84,8 @@ public:
         categoryComboBox->addItem(QString());
         categoryComboBox->addItem(QString());
         categoryComboBox->addItem(QString());
+        categoryComboBox->addItem(QString());
+        categoryComboBox->addItem(QString());
         categoryComboBox->setObjectName("categoryComboBox");
 
         formLayout->setWidget(2, QFormLayout::ItemRole::FieldRole, categoryComboBox);
@@ -135,6 +137,8 @@ public:
         categoryComboBox->setItemText(0, QCoreApplication::translate("NotificationEditDialog", "\350\241\214\346\224\277", nullptr));
         categoryComboBox->setItemText(1, QCoreApplication::translate("NotificationEditDialog", "\345\255\246\346\234\257", nullptr));
         categoryComboBox->setItemText(2, QCoreApplication::translate("NotificationEditDialog", "\347\224\237\346\264\273", nullptr));
+        categoryComboBox->setItemText(3, QCoreApplication::translate("NotificationEditDialog", "\350\211\272\346\234\257", nullptr));
+        categoryComboBox->setItemText(4, QCoreApplication::translate("NotificationEditDialog", "\344\275\223\350\202\262", nullptr));
 
         dateLabel->setText(QCoreApplication::translate("NotificationEditDialog", "\346\227\245\346\234\237\357\274\232", nullptr));
         dateLineEdit->setPlaceholderText(QCoreApplication::translate("NotificationEditDialog", "\346\240\274\345\274\217\357\274\232YYYY-MM-DD", nullptr));

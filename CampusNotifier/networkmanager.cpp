@@ -10,13 +10,10 @@ NetworkManager::NetworkManager(QObject *parent) : QObject(parent) {
 }
 
 void NetworkManager::fetchNotifications() {
-    // 模拟测试数据
-    QVector<Notification> mockData;
-    mockData.append({101, "关于放假的通知", "行政", "2025-10-01", "国庆放假7天"});
-    mockData.append({102, "讲座：AI未来", "学术", "2025-10-05", "地点：报告厅"});
-    mockData.append({103, "食堂新菜品推出", "生活", "2025-10-03", "食堂三楼新增特色菜品"});
-    mockData.append({104, "艺术展通知", "艺术", "2025-10-10", "图书馆将举办秋季艺术展"});
-    emit dataReady(mockData);
+    // 当前无真实网络API，返回空列表避免覆盖现有数据库数据
+    // 实际开发中替换为真实网络请求
+    QVector<Notification> emptyData;
+    emit dataReady(emptyData);
 }
 
 void NetworkManager::onFinished(QNetworkReply* reply) {

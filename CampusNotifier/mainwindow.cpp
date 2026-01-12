@@ -46,8 +46,8 @@ void MainWindow::onRefreshClicked() {
 }
 
 void MainWindow::updateUI(QVector<Notification> data) {
-    currentData = data;
     dbHelper->saveNotifications(data); // 存入缓存
+    currentData = dbHelper->getAllNotifications(); // 重新加载所有数据，确保包含所有通知
     filterByCategory(ui->categoryCombo->currentText());
 }
 

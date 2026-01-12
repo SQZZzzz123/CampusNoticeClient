@@ -3,6 +3,7 @@
 
 #include <QSqlDatabase>
 #include <QVector>
+#include <QCoreApplication>
 #include "notificationitem.h"
 
 class DatabaseHelper {
