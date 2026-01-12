@@ -10,15 +10,12 @@ NetworkManager::NetworkManager(QObject *parent) : QObject(parent) {
 }
 
 void NetworkManager::fetchNotifications() {
-    // 实际开发中替换为学校 API 地址
-    QUrl url("http://api.example.com/notifications");
-    manager->get(QNetworkRequest(url));
-
-    // 模拟测试数据（如果没有真实接口，手动触发信号）
+    // 模拟测试数据
     QVector<Notification> mockData;
     mockData.append({101, "关于放假的通知", "行政", "2025-10-01", "国庆放假7天"});
     mockData.append({102, "讲座：AI未来", "学术", "2025-10-05", "地点：报告厅"});
     mockData.append({103, "食堂新菜品推出", "生活", "2025-10-03", "食堂三楼新增特色菜品"});
+    mockData.append({104, "艺术展通知", "艺术", "2025-10-10", "图书馆将举办秋季艺术展"});
     emit dataReady(mockData);
 }
 

@@ -62,15 +62,8 @@ void DatabaseHelper::saveNotifications(const QVector<Notification>& list)
         return;
     }
     
-    // 清空现有数据
-    if (!query.exec("DELETE FROM notifications")) {
-        qDebug() << "清空表失败:" << query.lastError().text();
-        database.rollback();
-        return;
-    }
-    
-    // 批量插入新数据
-    if (!query.prepare("INSERT INTO notifications (id, title, category, date, content) VALUES (:id, :title, :category, :date, :content)")) {
+    // 批量插入或更新数据，保留现有通知
+    if (!query.prepare("INSERT OR REPLACE INTO notifications (id, title, category, date, content) VALUES (:id, :title, :category, :date, :content)")) {
         qDebug() << "准备插入语句失败:" << query.lastError().text();
         database.rollback();
         return;
