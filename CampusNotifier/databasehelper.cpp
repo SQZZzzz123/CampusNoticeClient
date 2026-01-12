@@ -151,11 +151,13 @@ QVector<Notification> DatabaseHelper::getAllNotifications()
     }
     
     QSqlQuery query;
+    qDebug() << "Executing query: SELECT id, title, category, date, content FROM notifications";
     if (!query.exec("SELECT id, title, category, date, content FROM notifications")) {
         qDebug() << "查询数据失败:" << query.lastError().text();
         return result;
     }
     
+    int rowCount = 0;
     while (query.next()) {
         Notification item;
         item.id = query.value(0).toInt();
@@ -164,8 +166,12 @@ QVector<Notification> DatabaseHelper::getAllNotifications()
         item.date = query.value(3).toString();
         item.content = query.value(4).toString();
         result.append(item);
+        
+        // Log each notification for debugging
+        qDebug() << "Row" << ++rowCount << ":" << item.id << item.title << "[" << item.category << "]" << item.date;
     }
     
+    qDebug() << "Total notifications loaded:" << result.size();
     return result;
 }
 
