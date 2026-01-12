@@ -1,0 +1,11 @@
+debug/main.o
+debug/mainwindow.o
+debug/database_manager.o
+debug/http_manager.o
+debug/notice_updater.o
+debug/notice_model.o
+debug/moc_mainwindow.o
+debug/moc_database_manager.o
+debug/moc_http_manager.o
+debug/moc_notice_updater.o
+debug/moc_notice_model.o

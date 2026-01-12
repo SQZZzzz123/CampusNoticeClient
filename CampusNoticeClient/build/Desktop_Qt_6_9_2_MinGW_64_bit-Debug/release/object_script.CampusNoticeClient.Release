@@ -1,0 +1,11 @@
+release/main.o
+release/mainwindow.o
+release/database_manager.o
+release/http_manager.o
+release/notice_updater.o
+release/notice_model.o
+release/moc_mainwindow.o
+release/moc_database_manager.o
+release/moc_http_manager.o
+release/moc_notice_updater.o
+release/moc_notice_model.o

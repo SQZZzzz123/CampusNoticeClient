@@ -2,27 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QComboBox>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QTableView>
-#include <QStatusBar>
-#include <QLabel>
-#include <QSplitter>
-#include <QDialog>
-#include <QTextEdit>
-#include <QHeaderView>
-#include <QSpinBox>
-#include <QCheckBox>
-#include <QProgressBar>
+#include <QStandardItemModel>
+#include "notice_model.h"
+#include "notice_updater.h"
 
-#include "NoticeModel.h"
-#include "NoticeManager.h"
-// 新增：图表管理器和托盘管理器头文件
-#include "ChartManager.h"
-#include "TrayManager.h"
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -33,78 +21,76 @@ public:
     ~MainWindow();
 
 private slots:
-    void onRefreshClicked();
-    void onMarkAllAsReadClicked();
-    void onClearReadClicked();
-    void onNoticeDoubleClicked(const QModelIndex &index);
-    void onFilterChanged();
-    void onSearchTextChanged();
-    void onNetworkStatusChanged(const QString &status);
-    void onCacheCountChanged(int count);
-    // 新增：新通知接收槽函数
-    void onNewNoticesReceived(const QList<Notice> &newNotices);
-    // 新增：导出功能槽函数
-    void onExportSelectedClicked();
-    void onExportAllClicked();
-    // 新增：统计图表功能槽函数
-    void onShowChartClicked();
-    // 新增：轮询间隔设置槽函数
-    void onPollingIntervalChanged();
-    // 新增：离线模式切换槽函数
-    void onOfflineModeToggled();
-    // 新增：备份和恢复功能槽函数
-    void onBackupDataClicked();
-    void onRestoreDataClicked();
-    // 新增：托盘和通知提醒槽函数
-    void onNotificationActivated(int noticeId);
+    // 分类列表选择变化
+    void onCategorySelectionChanged();
+
+    // 通知列表选择变化
+    void onNoticeSelectionChanged(const QModelIndex &current, const QModelIndex &previous);
+
+    // 刷新按钮点击
+    void onRefreshButtonClicked();
+
+    // 全部已读按钮点击
+    void onMarkAllReadButtonClicked();
+
+    // 通知更新开始
+    void onUpdateStarted();
+
+    // 通知更新完成
+    void onUpdateFinished(int newNoticeCount);
+
+    // 通知更新失败
+    void onUpdateFailed(const QString &errorString);
+
+    // 通知数量变化
+    void onNoticeCountChanged();
+
+    // 未读通知数量变化
+    void onUnreadCountChanged();
+
+    // 菜单操作
+    void on_actionExit_triggered();
+    void on_actionSettings_triggered();
+    void on_actionAbout_triggered();
 
 private:
-    void setupUI();
-    void setupConnections();
-    void loadNotices();
+    // 初始化UI
+    void initUI();
 
-    // UI Components
-    QWidget *centralWidget;
-    QVBoxLayout *mainLayout;
+    // 初始化数据模型
+    void initModel();
 
-    // Top control panel
-    QWidget *controlPanel;
-    QHBoxLayout *controlLayout;
-    QComboBox *categoryFilter;
-    QLineEdit *searchBox;
-    QPushButton *refreshBtn;
-    QPushButton *markAllReadBtn;
-    QPushButton *clearReadBtn;
-    // 新增：导出按钮
-    QPushButton *exportSelectedBtn;
-    QPushButton *exportAllBtn;
-    // 新增：统计图表按钮
-    QPushButton *chartBtn;
-    // 新增：轮询间隔设置
-    QLabel *pollingIntervalLabel;
-    QSpinBox *pollingIntervalSpinBox;
-    // 新增：离线模式开关
-    QCheckBox *offlineModeCheckBox;
-    // 新增：备份恢复按钮
-    QPushButton *backupBtn;
-    QPushButton *restoreBtn;
+    // 初始化通知更新器
+    void initNoticeUpdater();
 
-    // Main content area
-    QTableView *tableView;
-    NoticeModel *sourceModel;
-    QSortFilterProxyModel *proxyModel;
+    // 连接信号槽
+    void connectSignalsSlots();
 
-    // Status bar
-    QLabel *networkStatusLabel;
-    QLabel *cacheCountLabel;
-    // 新增：导出进度条
-    QProgressBar *exportProgressBar;
+    // 更新UI显示
+    void updateUI();
 
-    // Manager
-    NoticeManager *noticeManager;
-    // 新增：图表管理器和托盘管理器
-    ChartManager *chartManager;
-    TrayManager *trayManager;
+    // 更新未读通知数量显示
+    void updateUnreadCountDisplay();
+
+    // 更新通知列表
+    void updateNoticeList();
+
+    // 更新最后更新时间
+    void updateLastUpdateTime();
+
+    // 获取当前选中的分类
+    NoticeCategory getCurrentSelectedCategory();
+
+    // 显示通知详情
+    void showNoticeDetail(const Notice &notice);
+
+    // 隐藏通知详情
+    void hideNoticeDetail();
+
+    Ui::MainWindow *ui;
+    NoticeModel *m_noticeModel;
+    NoticeUpdater *m_noticeUpdater;
+    NoticeCategory m_currentCategory;
+    int m_currentNoticeId;
 };
-
 #endif // MAINWINDOW_H
