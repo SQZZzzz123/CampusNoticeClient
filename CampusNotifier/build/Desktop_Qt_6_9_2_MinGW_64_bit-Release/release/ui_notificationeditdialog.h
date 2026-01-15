@@ -13,6 +13,7 @@
 #include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFormLayout>
@@ -37,7 +38,7 @@ public:
     QLabel *categoryLabel;
     QComboBox *categoryComboBox;
     QLabel *dateLabel;
-    QLineEdit *dateLineEdit;
+    QDateEdit *dateEdit;
     QLabel *contentLabel;
     QTextEdit *contentTextEdit;
     QDialogButtonBox *buttonBox;
@@ -95,10 +96,11 @@ public:
 
         formLayout->setWidget(3, QFormLayout::ItemRole::LabelRole, dateLabel);
 
-        dateLineEdit = new QLineEdit(verticalLayoutWidget);
-        dateLineEdit->setObjectName("dateLineEdit");
+        dateEdit = new QDateEdit(verticalLayoutWidget);
+        dateEdit->setObjectName("dateEdit");
+        dateEdit->setCalendarPopup(true);
 
-        formLayout->setWidget(3, QFormLayout::ItemRole::FieldRole, dateLineEdit);
+        formLayout->setWidget(3, QFormLayout::ItemRole::FieldRole, dateEdit);
 
         contentLabel = new QLabel(verticalLayoutWidget);
         contentLabel->setObjectName("contentLabel");
@@ -141,7 +143,7 @@ public:
         categoryComboBox->setItemText(4, QCoreApplication::translate("NotificationEditDialog", "\344\275\223\350\202\262", nullptr));
 
         dateLabel->setText(QCoreApplication::translate("NotificationEditDialog", "\346\227\245\346\234\237\357\274\232", nullptr));
-        dateLineEdit->setPlaceholderText(QCoreApplication::translate("NotificationEditDialog", "\346\240\274\345\274\217\357\274\232YYYY-MM-DD", nullptr));
+        dateEdit->setDisplayFormat(QCoreApplication::translate("NotificationEditDialog", "yyyy-MM-dd", nullptr));
         contentLabel->setText(QCoreApplication::translate("NotificationEditDialog", "\345\206\205\345\256\271\357\274\232", nullptr));
         contentTextEdit->setPlaceholderText(QCoreApplication::translate("NotificationEditDialog", "\350\257\267\350\276\223\345\205\245\351\200\232\347\237\245\345\206\205\345\256\271", nullptr));
     } // retranslateUi

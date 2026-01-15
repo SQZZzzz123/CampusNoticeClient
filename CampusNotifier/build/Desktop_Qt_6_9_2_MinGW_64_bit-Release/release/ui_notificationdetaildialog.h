@@ -30,6 +30,9 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *titleLabel;
     QHBoxLayout *horizontalLayout;
+    QLabel *idLabel;
+    QLabel *idValueLabel;
+    QSpacerItem *horizontalSpacer_2;
     QLabel *categoryLabel;
     QLabel *categoryValueLabel;
     QSpacerItem *horizontalSpacer;
@@ -63,6 +66,20 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
+        idLabel = new QLabel(verticalLayoutWidget);
+        idLabel->setObjectName("idLabel");
+
+        horizontalLayout->addWidget(idLabel);
+
+        idValueLabel = new QLabel(verticalLayoutWidget);
+        idValueLabel->setObjectName("idValueLabel");
+
+        horizontalLayout->addWidget(idValueLabel);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
         categoryLabel = new QLabel(verticalLayoutWidget);
         categoryLabel->setObjectName("categoryLabel");
 
@@ -128,6 +145,8 @@ public:
     {
         NotificationDetailDialog->setWindowTitle(QCoreApplication::translate("NotificationDetailDialog", "\351\200\232\347\237\245\350\257\246\346\203\205", nullptr));
         titleLabel->setText(QCoreApplication::translate("NotificationDetailDialog", "\351\200\232\347\237\245\346\240\207\351\242\230", nullptr));
+        idLabel->setText(QCoreApplication::translate("NotificationDetailDialog", "ID\357\274\232", nullptr));
+        idValueLabel->setText(QCoreApplication::translate("NotificationDetailDialog", "ID\345\200\274", nullptr));
         categoryLabel->setText(QCoreApplication::translate("NotificationDetailDialog", "\345\210\206\347\261\273\357\274\232", nullptr));
         categoryValueLabel->setText(QCoreApplication::translate("NotificationDetailDialog", "\345\210\206\347\261\273\345\200\274", nullptr));
         dateLabel->setText(QCoreApplication::translate("NotificationDetailDialog", "\346\227\245\346\234\237\357\274\232", nullptr));
