@@ -43,6 +43,33 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QLabel" name="idLabel">
+        <property name="text">
+         <string>ID：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="idValueLabel">
+        <property name="text">
+         <string>ID值</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QLabel" name="categoryLabel">
         <property name="text">
          <string>分类：</string>

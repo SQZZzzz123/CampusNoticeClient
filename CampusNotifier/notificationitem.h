@@ -1,6 +1,8 @@
 #ifndef NOTIFICATIONITEM_H
 #define NOTIFICATIONITEM_H
 
+#include <QString>
+
 struct Notification {
     int id;
     QString title;

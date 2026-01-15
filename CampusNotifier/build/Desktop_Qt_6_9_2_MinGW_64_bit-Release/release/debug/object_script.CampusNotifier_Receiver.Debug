@@ -1,0 +1,10 @@
+debug/databasehelper.o
+debug/main.o
+debug/mainwindow.o
+debug/networkmanager.o
+debug/notificationdetaildialog.o
+debug/notificationeditdialog.o
+debug/moc_mainwindow.o
+debug/moc_networkmanager.o
+debug/moc_notificationdetaildialog.o
+debug/moc_notificationeditdialog.o

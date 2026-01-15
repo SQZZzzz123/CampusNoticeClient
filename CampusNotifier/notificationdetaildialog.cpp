@@ -16,6 +16,7 @@ NotificationDetailDialog::~NotificationDetailDialog()
 void NotificationDetailDialog::setNotification(const Notification& notification)
 {
     ui->titleLabel->setText(notification.title);
+    ui->idValueLabel->setText(QString::number(notification.id));
     ui->categoryValueLabel->setText(notification.category);
     ui->dateValueLabel->setText(notification.date);
     ui->contentLabel->setText(notification.content);

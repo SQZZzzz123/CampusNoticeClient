@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QListWidgetItem>
 #include <QMap>
+#include "appconfig.h"
 #include "databasehelper.h"
 #include "networkmanager.h"
 #include "notificationitem.h"
@@ -28,6 +29,11 @@ private slots:
     void onAddBtnClicked();
     void onEditBtnClicked();
     void onDeleteBtnClicked();
+    void onNotificationAdded(bool success);
+    void onNotificationUpdated(bool success);
+    void onNotificationDeleted(bool success);
+    void onSyncCompleted();
+    void syncWithServer();
 
 private:
     Ui::MainWindow *ui;

@@ -14,7 +14,7 @@ class NotificationDetailDialog : public QDialog {
 public:
     explicit NotificationDetailDialog(QWidget *parent = nullptr);
     ~NotificationDetailDialog();
-    
+
     void setNotification(const Notification& notification);
 
 private:
